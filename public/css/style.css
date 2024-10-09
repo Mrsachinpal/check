@@ -22,6 +22,9 @@ body{
 }
 
 /* Footer */
+.f-info{
+    width: 100vw;
+}
 .f-info-links a{
     text-decoration: none;
     color: #222222;

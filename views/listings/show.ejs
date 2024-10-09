@@ -15,15 +15,16 @@
         <p class="card-text">
           <%= listing.description %>
         </p>
-        <p class="card-text"> &#8377; <%= listing.price.toLocaleString("en-IN") %>
-        </p>
+        <p class="card-text"> &#8377; 
+          <%= listing.price.toLocaleString("en-IN") %>
+         </p>
         <p class="card-text">
           <%= listing.location %>
         </p>
         <p class="card-text">
           <%= listing.country %>
         </p>
-        </p>
+
       </div>
     </div>
 
@@ -39,10 +40,10 @@
       </div>
       <% } %>
 
+      <% if (currUser) { %>
         <div class="col-8 offset-3 mb-3">
           <hr>
 
-          <% if (currUser) { %>
             <h4>Leave a Review</h4>
             <form action="/listings/<%= listing._id %>/reviews" method="post" novalidate class="needs-validation">
               <div class="mb-3 mt-3">
@@ -63,10 +64,10 @@
         <hr>
         <% } %>
 
-          <p><b> All Reviews </b></p>
-
-          <div class="row">
-            <% for(let review of listing.reviews) { %>
+        
+        <div class="row">
+          <% for(let review of listing.reviews) { %>
+            <p><b> All Reviews </b></p>
               <div class="card col-5 ms-3 mb-3">
                 <div class="card-body">
                   <h5>
