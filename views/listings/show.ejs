@@ -66,8 +66,8 @@
 
         
         <div class="row">
+          <p><b> All Reviews </b></p>
           <% for(let review of listing.reviews) { %>
-            <p><b> All Reviews </b></p>
               <div class="card col-5 ms-3 mb-3">
                 <div class="card-body">
                   <h5>
@@ -87,7 +87,6 @@
                 </div>
                 <form class="mb-3" method="post"
                   action="/listings/<%= listing._id %>/reviews/<%= review._id %>?_method=DELETE">
-                </form>
                 <button style="width:fit-content !important" class="btn btn-sm btn-dark">Delete</button>
                 </form>
               </div>
