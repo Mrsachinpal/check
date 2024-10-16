@@ -9,18 +9,9 @@ const listingSchema = new Schema({
   },
   description: String,
   image: {
-    filename: String,
-    url: {
-      type: String,
-      default:
-        " https://media.istockphoto.com/id/182730617/photo/varkala-beach.webp?a=1&b=1&s=612x612&w=0&k=20&c=KOo5jAjXlO-8_YqfmrCgoxuzjqPidd_V9j_HIopbuoM=",
-
-      set: (v) =>
-        v === ""
-          ? " https://media.istockphoto.com/id/182730617/photo/varkala-beach.webp?a=1&b=1&s=612x612&w=0&k=20&c=KOo5jAjXlO-8_YqfmrCgoxuzjqPidd_V9j_HIopbuoM= "
-          : v,
+   url: String,
+   filename: String,
     },
-  },
   price: Number,
   location: String,
   country: String,
@@ -33,8 +24,21 @@ const listingSchema = new Schema({
   owner : {
     type: Schema.Types.ObjectId,
     ref: "User"
+  },
+  geometry: {
+    type: {
+      type: String, // Don't do `{ location: { type: String } }`
+      enum: ['Point'], // 'location.type' must be 'Point'
+      required: true
+    },
+    coordinates: {
+      type: [Number],
+      required: true
+    }
   }
 });
+
+
 listingSchema.post("findOneAndDelete",async(listing)=>{
   if(listing){
     await Review.deleteMany({_id : {$in: listing.reviews  }});
