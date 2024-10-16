@@ -1,12 +1,21 @@
 mapboxgl.accessToken = mapToken;
+
 const map = new mapboxgl.Map({
   container: "map", // container ID
-  center: [80.9462, 26.8467], // starting position [lng, lat]
-  zoom: 9, // starting zoom
   style: "mapbox://styles/mapbox/streets-v11", // add map style
+  center: listing.geometry.coordinates, // starting position [lng, lat]
+  zoom: 9, // starting zoom
+ 
 });
-console.log(coordinates);
 
-const marker1 = new mapboxgl.Marker()
-  .setLngLat([listing.geometry.coordinates]) // Listing.geometry.coordinates
-  .addTo(map);
+const marker = new mapboxgl.Marker({color:'red'})
+.setLngLat(listing.geometry.coordinates)//listing.geometry/.coordinates
+.setPopup( new mapboxgl.Popup({offset: 25})
+// .setLngLat(e.lngLat)
+.setHTML(
+      
+     `<h4>${listing.location}</h4><p>Exact Location will be provided after booking</p>`
+    )
+
+ )
+.addTo(map);
