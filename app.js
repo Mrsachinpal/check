@@ -71,10 +71,6 @@ const sessionOptions = {
   }
 };
 
-// app.get("/", (req, res) => {
-//   res.send("Home route");
-// });
-
 
 
 app.use(session(sessionOptions));
@@ -94,14 +90,7 @@ app.use((req,res,next)=>{
   next();
 })
 
-// app.get("/demouser", async(req, res) => {
-//   let fakeUser = new User({
-//     email: "shukla123@gmail.com",
-//     username: "shukla",
-//   });
-//   let registerUser = await User.register(fakeUser,"shukla@123");
-//   res.send(registerUser);
-// });
+
 
 app.use("/listings",  listingsRouter);
 
@@ -118,7 +107,7 @@ app.all("*", (req, res, next) => {
 app.use((err, req, res, next) => {
   let { statusCode = 500, message = "Something went wrong!" } = err;
   res.status(statusCode).render("error.ejs", { message });
-  // res.status(statusCode).send(message);
+
 });
 
 app.listen(8080, () => {
